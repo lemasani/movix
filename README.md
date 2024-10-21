@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Movie Streaming App**
 
-## Getting Started
+A modern, responsive movie streaming application built with **Next.js 14** and **TypeScript**, leveraging the **TMDb API** to showcase trending movies and provide users with an engaging viewing experience.
 
-First, run the development server:
+## **Features**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Landing Page**: Displays popular/trending movies using data from the TMDb API.
+- **Movie Carousel**: Uses **Swiper.js** for movie posters, offering smooth navigation.
+- **Movie Details**: Shows details such as title, release date, and rating.
+- **Authentication**: User authentication (using **NextAuth.js** or **Clerk**) for login, signup, and session management.
+- **Responsive Design**: Ensures the app looks great on all devices.
+  
+## **Tech Stack**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js 14**: Server-side rendering and modern React features.
+- **TypeScript**: For type safety and improved developer experience.
+- **Axios**: For fetching movie data from TMDb API.
+- **Swiper.js**: For an intuitive carousel of trending movies.
+- **Tailwind CSS**: For responsive, fast, and efficient styling.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **Setup Instructions**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
 
-## Learn More
+    ```bash
+    git clone https://github.com/your-username/movie-streaming-app.git
+    cd movie-streaming-app
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Create a `.env` file in the root directory and add your **TMDb API Key**:
 
-## Deploy on Vercel
+    ```bash
+    NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npm run dev
+    ```
+
+5. Open your browser and navigate to `http://localhost:3000` to view the app.
+
+## **API Usage**
+
+The application uses **The Movie Database (TMDb) API** to fetch the latest and trending movie information. To use the API:
+
+- Get your API key from [TMDb](https://www.themoviedb.org/documentation/api).
+- Configure the API key in the `.env` file as shown above.
+
+## **Project Structure**
+
+├── components │ ├── HeroCarousel.tsx # Carousel component for trending movies │ └── MovieCard.tsx # Card displaying movie info ├── pages │ ├── index.tsx # Landing page │ ├── api │ │ └── auth # Authentication API routes ├── styles │ └── globals.css # Global styling with Tailwind CSS ├── utils │ └── api.ts # Axios configuration for TMDb API └── README.md # Project documentation
+
+## **External Libraries**
+
+- **Axios**: For making API requests to TMDb.
+- **Swiper.js**: For the carousel feature.
+- **Tailwind CSS**: For styling.
+- **NextAuth.js** or **Clerk**: For authentication (mention whichever you use).
+
+## **Challenges Encountered**
+
+- Implementing smooth transitions and autoplay in the carousel.
+- Handling API rate limits while fetching large movie datasets.
+
+## **Future Enhancements**
+
+- Add user watchlists and personalized recommendations.
+- Integrate additional filters (e.g., by genre, release year).
+- Add social login options (Google, Facebook).
+- Improve error handling and loading states.
+
+## **Contributing**
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## **License**
+
+This project is licensed under the [MIT License](LICENSE).
+
