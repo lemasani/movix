@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import Autoplay from "embla-carousel-autoplay";
 import { Carousel,  CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from './ui/carousel';
 import { getTrending } from '@/lib/trending';
 
