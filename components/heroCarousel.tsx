@@ -35,12 +35,16 @@ const HeroCarousel: React.FC = () => {
           width={1280}
           height={500}
           alt={movie.title}
-          className="w-full h-full object-cover" 
+          className="w-full h-full object-cover -z-10" 
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white p-8 rounded-md shadow-lg w-full text-center mx-auto">
-          <h2 className="text-3xl font-bold mb-2">{movie.title}</h2>
-          <p className="mb-2">Release Date: {movie.release_date}</p>
-          <p>Rating: {movie.vote_average}/10</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white w-full text-center">
+          <div className="movie -mt-20 p-2">
+            <h2 className="text-3xl font-bold mb-2">{movie.title}</h2>
+            <p className="mb-2">Release Date: {movie.release_date}</p>
+            <p>Rating: {movie.vote_average}/10</p>
+
+          </div>
+
         </div>
       </CarouselItem>
     ))}
