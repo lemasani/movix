@@ -1,11 +1,41 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/router';
+
 import HeroCarousel from '@/components/heroCarousel';
 import MovieCard from '@/components/movieCard';
 import SeriesCard from '@/components/seriesCard';
 
 export default function Home() {
   const [view, setView] = useState('movies');
+  const { user } = useUser();
+
+  useEffect(() => {
+    // Only initiate the TMDb process if the user is signed in and doesn't have the session ID yet
+    if (user && !user.publicMetadata.tmdbSessionId) {
+      initiateTMDbAuth();
+    }
+  }, [user]);
+
+ console.log('TMDb session ID:', user?.publicMetadata.tmdbSessionId);
+
+  const initiateTMDbAuth = async () => {
+    try {
+      const response = await fetch('/api/clerk', { method: 'POST' });
+      const data = await response.json();
+
+      if (data.success) {
+        // Redirect user to TMDb with a return URL
+        const returnUrl = encodeURIComponent(window.location.origin + '/');
+        window.location.href = `${data.authUrl}&redirect_to=${returnUrl}`;
+      } else {
+        console.error('Error initiating TMDb authorization:', data.error);
+      }
+    } catch (error) {
+      console.error('Error fetching TMDb auth URL:', error);
+    }
+  };
 
   return (
     <>
@@ -31,19 +61,18 @@ export default function Home() {
               </button>
             </div>
             <div className="trending-content mt-10">
-              {view === 'movies' ?(
+              {view === 'movies' ? (
                 <>
                   <h2 className='text-xl italic font-light'>Trending Movies</h2>
                   <MovieCard />
                 </>
-              ): (
+              ) : (
                 <>
                   <h2 className='text-xl italic font-light'>Trending Series</h2>
                   <SeriesCard />
                 </>
               )}
             </div>
-
           </div>
         </section>
       </main>

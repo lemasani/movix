@@ -1,10 +1,11 @@
+'use client'
 import React from 'react';
 import Link from 'next/link';
-import { auth } from '@clerk/nextjs/server';
+import { useUser } from '@clerk/nextjs';
 import { UserButton } from '@clerk/nextjs';
 
 export default function Header() {
-  const { userId } = auth();
+  const { user } = useUser();
 
   return (
     <header className="relative top-0 bg-white shadow-md">
@@ -13,8 +14,12 @@ export default function Header() {
           Movix
         </Link>
         <nav className="flex items-center gap-4">
-          {userId ? (
-            <UserButton />
+          {user ? (
+            <>
+              <h5>welcome, {user.firstName}</h5>
+              <UserButton />
+            
+            </>
           ) : (
             <>
               <Link href="/sign-in" className="text-white bg-blue-500 p-2 rounded-md hover:text-gray-700">
